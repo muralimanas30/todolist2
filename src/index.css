@@ -33,8 +33,14 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  height: 100vh;
+  overflow: auto;
 
+  
+
+}
+html , body {
+  box-sizing: border-box;
+    
 }
 #root{
   height: 100%;
@@ -43,6 +49,8 @@ body {
   justify-content: center;
   align-items: center;
   
+  overflow: auto;
+  padding: 0;
 }
 
 h1 {
@@ -90,7 +98,7 @@ button:active,button:focus-visible
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
+  margin-top: 75px;
   padding: 15px;
   border-radius: 5px;
   /* border: 2px solid white; */
@@ -98,27 +106,34 @@ button:active,button:focus-visible
   border-bottom: 2px solid cyan;
   width: clamp(100px, 80% ,800px);
   animation: brd-move 2s ease-in-out infinite forwards alternate-reverse;
-  
-  max-height: 800px;
+  animation: bg-move 5s ease-in-out infinite forwards alternate-reverse;
+  max-height: 600px;
+  scrollbar-gutter: stable both-edges;
+  scroll-padding: 20%;
+
   font-family: Arial, sans-serif;
   text-align: center;
   background: linear-gradient(45deg, #3a3a3a85 ,#000000 , #3a3a3a85);
   background-size: 200% 100% ;
-  animation: bg-move 5s ease-in-out infinite forwards alternate-reverse;
-  overflow-y: auto;
+  
+  overflow: auto;
   box-shadow: 0px 0px 30px rgba(0, 42, 133, 0.486);
   transition: all 0.5s ease-in-out;
 
+
+  scroll-snap-type: both mandatory;
+  scroll-snap-align: end;
+
   & h1 {
     font-size: 2rem;
-    background: linear-gradient(45deg , blueviolet , cyan);
-    background-size: 300px;
+    background: linear-gradient(150deg,magenta , cyan,magenta);
+    background-size: 500px;
     background-position: 0% 0%;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
     
-    animation: text-bg-move 1s ease-in-out infinite forwards alternate-reverse;
+    animation: text-bg-move 2s ease-in-out infinite forwards alternate-reverse;
   }
 
 
@@ -145,11 +160,14 @@ button:active,button:focus-visible
       
     }
     to{
-      background-position: 75% 0%;
+      background-position: 200% 0%;
     }
 }
 .for-buttons{
   display: inline-block;
+  transition: all 0.3s ease-in-out;
+  margin: none;
+
 }
 .for-input{
   display: flex;
@@ -160,16 +178,19 @@ button:active,button:focus-visible
 }
 .add-button {
     background-color: #00a51bf6;
-    padding: 5px 10px;
+    padding: 3px 10px;
     border-radius: 5px;
     margin: 5px 10px;
     transition: background-color 0.2s ease;
+    color: white;
+    font-size: 1.5rem;
 }
 .add-button:hover{
   background-color: #00ff2a00;
 }
 .delete-button{
   background-color: rgba(255, 0, 0, 0.603);
+  color: white;
 }
 .delete-button:hover{
   background-color: rgba(255, 0, 0, 0);
@@ -188,12 +209,21 @@ button:active,button:focus-visible
 .task-input:hover , .task-input:focus-visible{
   border: 2px solid rgb(18, 83, 202);
 }
-ol{
+.for-ul{
   width: calc(100% - 20px);
-  max-width: 600px;
+  max-width: min(80% , 550px);
   margin: 10px 0px;
+  max-height: 400px;
+  overflow: auto;
+  scroll-snap-type: both mandatory;
+  scroll-snap-align: end;
+  
 }
-
+.top{
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
 .a-task{
   
   border: 1px solid cyan;
@@ -205,7 +235,8 @@ ol{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  
   animation: task-in 0.3s ease-in-out 1 forwards;
 
 }
@@ -229,7 +260,31 @@ ol{
   flex-grow: 1;
   overflow:auto;
   font-family: "Exo", sans-serif;
+  margin: 0;
+  overflow: auto;
 }
 audio{
   transform: scale(0.8);
+  background-color: transparent;
+  border-top: 2px solid blueviolet;
+  border-bottom: 2px solid cyan;
+  border-radius: 30px;
+  animation: brd-move 2s ease-in-out infinite forwards alternate-reverse;
+
 }
+
+.footr{
+  margin-bottom: 0;
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+.footr::after,.footr::before{
+  content: ' ~~ ';
+}
+
+@media only screen and (max-width:700px){
+  .for-buttons{
+    transform: scale(0.75);
+  }
+}
+
