@@ -1,5 +1,5 @@
 
-import ToDoList from "./ToDoList"
+import TDL from "./TDL.jsx"
 
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       
-      <ToDoList></ToDoList>
+      <TDL></TDL>
 
     </>
   )
